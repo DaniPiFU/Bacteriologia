@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Identificación de Bacterias</title>
+</head>
+<body>
+    <h1>Identificación de Bacterias</h1>
+    <form id="bacteria-form">
+        <label for="forma">Forma de la bacteria:</label>
+        <select id="forma" name="forma">
+            <option value="Bacilo">Bacilo</option>
+            <option value="Coco">Coco</option>
+        </select><br><br>
+        <label for="gram">Tinción Gram:</label>
+        <select id="gram" name="gram">
+            <option value="Gram positiva">Gram positiva</option>
+            <option value="Gram negativa">Gram negativa</option>
+        </select><br><br>
+        <label for="movilidad">Movilidad:</label>
+        <select id="movilidad" name="movilidad">
+            <option value="Móvil">Móvil</option>
+            <option value="No móvil">No móvil</option>
+        </select><br><br>
+        <button type="button" onclick="identificarBacteria()">Identificar Bacteria</button>
+    </form>
+    <p id="resultado"></p>
+
+    <script>
+        function identificarBacteria() {
+            const bacterias = [
+                { nombre: "Escherichia coli", forma: "Bacilo", gram: "Gram negativa", movilidad: "Móvil" },
+                { nombre: "Staphylococcus aureus", forma: "Coco", gram: "Gram positiva", movilidad: "No móvil" },
+                { nombre: "Bacillus subtilis", forma: "Bacilo", gram: "Gram positiva", movilidad: "Móvil" },
+                { nombre: "Streptococcus pneumoniae", forma: "Coco", gram: "Gram positiva", movilidad: "No móvil" },
+            ];
+
+            const forma = document.getElementById("forma").value;
+            const gram = document.getElementById("gram").value;
+            const movilidad = document.getElementById("movilidad").value;
+
+            const bacteria = bacterias.find(b => b.forma === forma && b.gram === gram && b.movilidad === movilidad);
+
+            document.getElementById("resultado").textContent = bacteria ? La bacteria identificada es: ${bacteria.nombre} : "Bacteria no encontrada";
+        }
+    </script>
+</body>
+</html>
