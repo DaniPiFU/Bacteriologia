@@ -30,14 +30,39 @@
     </form>
     
     <p id="resultado"></p>
+    <img id="imagen-bacteria" src="" alt="" style="max-width: 300px; display: none; margin-top: 20px;">
 
     <script>
         // Base de datos de bacterias
         const bacterias = [
-            { nombre: "Escherichia coli", forma: "Bacilo", gram: "Gram negativa", movilidad: "Móvil" },
-            { nombre: "Staphylococcus aureus", forma: "Coco", gram: "Gram positiva", movilidad: "No móvil" },
-            { nombre: "Bacillus subtilis", forma: "Bacilo", gram: "Gram positiva", movilidad: "Móvil" },
-            { nombre: "Streptococcus pneumoniae", forma: "Coco", gram: "Gram positiva", movilidad: "No móvil" }
+            { 
+                nombre: "Escherichia coli", 
+                forma: "Bacilo", 
+                gram: "Gram negativa", 
+                movilidad: "Móvil", 
+                imagen: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Escherichia_coli_NIAID.jpg/220px-Escherichia_coli_NIAID.jpg"
+            },
+            { 
+                nombre: "Staphylococcus aureus", 
+                forma: "Coco", 
+                gram: "Gram positiva", 
+                movilidad: "No móvil", 
+                imagen: "https://upload.wikimedia.org/wikipedia/commons/3/3b/Staphylococcus_aureus_01.png"
+            },
+            { 
+                nombre: "Bacillus subtilis", 
+                forma: "Bacilo", 
+                gram: "Gram positiva", 
+                movilidad: "Móvil", 
+                imagen: "https://upload.wikimedia.org/wikipedia/commons/0/08/Bacillus_subtilis_01.png"
+            },
+            { 
+                nombre: "Streptococcus pneumoniae", 
+                forma: "Coco", 
+                gram: "Gram positiva", 
+                movilidad: "No móvil", 
+                imagen: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/Streptococcus_pneumoniae_MG.jpg/800px-Streptococcus_pneumoniae_MG.jpg"
+            }
         ];
 
         // Función para identificar la bacteria según los criterios seleccionados
@@ -54,11 +79,15 @@
 
             // Mostrar el resultado
             const resultado = document.getElementById("resultado");
+            const imagenBacteria = document.getElementById("imagen-bacteria");
 
             if (bacteria) {
                 resultado.textContent = `La bacteria identificada es: ${bacteria.nombre}`;
+                imagenBacteria.src = bacteria.imagen;
+                imagenBacteria.style.display = "block"; // Mostrar la imagen
             } else {
                 resultado.textContent = "No se encontró una bacteria que coincida con los criterios seleccionados.";
+                imagenBacteria.style.display = "none"; // Ocultar la imagen si no se encuentra la bacteria
             }
         }
     </script>
