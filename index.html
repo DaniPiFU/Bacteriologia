@@ -13,36 +13,53 @@
             <option value="Bacilo">Bacilo</option>
             <option value="Coco">Coco</option>
         </select><br><br>
+
         <label for="gram">Tinción Gram:</label>
         <select id="gram" name="gram">
             <option value="Gram positiva">Gram positiva</option>
             <option value="Gram negativa">Gram negativa</option>
         </select><br><br>
+
         <label for="movilidad">Movilidad:</label>
         <select id="movilidad" name="movilidad">
             <option value="Móvil">Móvil</option>
             <option value="No móvil">No móvil</option>
         </select><br><br>
+
         <button type="button" onclick="identificarBacteria()">Identificar Bacteria</button>
     </form>
+    
     <p id="resultado"></p>
 
     <script>
-        function identificarBacteria() {
-            const bacterias = [
-                { nombre: "Escherichia coli", forma: "Bacilo", gram: "Gram negativa", movilidad: "Móvil" },
-                { nombre: "Staphylococcus aureus", forma: "Coco", gram: "Gram positiva", movilidad: "No móvil" },
-                { nombre: "Bacillus subtilis", forma: "Bacilo", gram: "Gram positiva", movilidad: "Móvil" },
-                { nombre: "Streptococcus pneumoniae", forma: "Coco", gram: "Gram positiva", movilidad: "No móvil" },
-            ];
+        // Base de datos de bacterias
+        const bacterias = [
+            { nombre: "Escherichia coli", forma: "Bacilo", gram: "Gram negativa", movilidad: "Móvil" },
+            { nombre: "Staphylococcus aureus", forma: "Coco", gram: "Gram positiva", movilidad: "No móvil" },
+            { nombre: "Bacillus subtilis", forma: "Bacilo", gram: "Gram positiva", movilidad: "Móvil" },
+            { nombre: "Streptococcus pneumoniae", forma: "Coco", gram: "Gram positiva", movilidad: "No móvil" }
+        ];
 
+        // Función para identificar la bacteria según los criterios seleccionados
+        function identificarBacteria() {
+            // Obtener los valores seleccionados en el formulario
             const forma = document.getElementById("forma").value;
             const gram = document.getElementById("gram").value;
             const movilidad = document.getElementById("movilidad").value;
 
-            const bacteria = bacterias.find(b => b.forma === forma && b.gram === gram && b.movilidad === movilidad);
+            // Buscar la bacteria que coincida con los valores seleccionados
+            const bacteria = bacterias.find(b =>
+                b.forma === forma && b.gram === gram && b.movilidad === movilidad
+            );
 
-            document.getElementById("resultado").textContent = bacteria ? La bacteria identificada es: ${bacteria.nombre} : "Bacteria no encontrada";
+            // Mostrar el resultado
+            const resultado = document.getElementById("resultado");
+
+            if (bacteria) {
+                resultado.textContent = `La bacteria identificada es: ${bacteria.nombre}`;
+            } else {
+                resultado.textContent = "No se encontró una bacteria que coincida con los criterios seleccionados.";
+            }
         }
     </script>
 </body>
